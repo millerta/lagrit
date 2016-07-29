@@ -1,0 +1,127 @@
+*
+* Simple LaGriT demo control file
+*
+* Carl Gable
+* gable@lanl.gov
+*
+* Other examples can be found in:
+* http://meshing.lanl.gov/proj/index.shtml
+* and
+* https://lagrit.lanl.gov/docs/demos/index.html
+*
+************************************************************
+*
+* Create a cube hex grid
+*
+cmo / create / mohex / / / hex
+createpts / brick / xyz / 2 3 4 / -1. -1. -1. / 1. 1. 1. / 1 1 1
+*
+* Set all elements to 'color' (attribute itetclr)  = 1
+cmo / setatt / mohex / itetclr / 1 0 0 / 1
+*
+* Set a few elements to 2
+*
+cmo / setatt / mohex / itetclr / 1 3 1 / 2
+*
+* Set all of the node 'colors' (attribute imt, integer material type) = 1
+*
+cmo / setatt / mohex / imt / 1 0 0 / 1
+*
+* Set nodes with z coordinate > 0.8 to imt = 2
+*
+pset / p_reset / attribute / zic / 1 0 0 / 0.8 / gt
+cmo / setatt / mohex / imt / pset get p_reset / 2
+quality
+*
+* Output the mesh as an AVS file
+*
+dump / avs2 / out_hex.inp / mohex
+*
+* Create a unit cube tet grid
+*
+* Convert each hex to 5 tets
+hextotet / 5 / motet5 / mohex
+quality
+* Convert each hex to 6 tets
+hextotet / 6 / motet6 / mohex
+quality
+* Convert each hex to 24 tets
+hextotet / 24 / motet24 / mohex
+quality
+*
+* Output results to files
+*
+dump / avs2 / out_tet5.inp / motet5
+dump / avs2 / out_tet6.inp / motet6
+dump / avs2 / out_tet24.inp / motet24
+*
+* Create a cylinder tet grid using Delaunay connect algorithm
+*
+* Define some variables to use in creating point distribution.
+*
+define / NR / 12
+define / NT / 37
+define / NZ /  9
+cmo / create / motet / / / tet
+createpts/rtz/NR,NT,NZ/0.,0.,0./3.,360.,4./1,0,1
+*
+* Remove coincident points
+*
+filter / 1 0 0
+rmpoint / compress
+*
+* Connect the points
+*
+connect
+* Output results to files
+dump / avs2 / out_tet_cyl.inp / motet
+dump / gmv  / out_tet_cyl.gmv / motet
+*
+* Compute the intersection of elements of mohex with motet
+* A attribute call if_inter will be created. If that attribute
+* is 0, the elements do not intersect, if it is > 0, the integer
+* indicates the number of intersections.
+*
+intersect_elements / motet / mohex / if_inter
+dump / avs2 / out_tet_cyl_inter.inp / motet
+*
+* Merge the two grids into a single mesh object
+*
+addmesh / append / mo_all / mohex motet
+dump / avs2 / out_append.inp / mo_all
+*
+* Do a little bit of clean up.
+cmo / delete / motet5
+cmo / delete / motet6
+cmo / delete / motet24
+cmo / delete / mo_all
+*
+* Interpolate properties from the hex mesh onto the tet mesh
+*
+* Create an attribute to hold the results
+*
+cmo / addatt / motet / att_interp / vdouble / scalar / nnodes
+*
+* Interpolate hex mesh attribute xic (use x coordinate as the source attribute) onto
+* the tet mesh attribute, att_interp.
+*
+interpolate / continuous / motet / att_interp / 1 0 0 / mohex / xic
+dump / avs2 / out_interpolate.inp / motet
+dump / gmv  / out_tet_cyl_interp.gmv / motet
+*
+* Translate the hex mesh.
+*
+cmo / printatt / mohex / -xyz- / minmax
+cmo / select / mohex
+trans / 1 0 0 / 0. 0. 0. / 1. 2. 3.
+cmo / printatt / mohex / -xyz- / minmax
+*
+* Scale the hex mesh
+*
+scale/ 1 0 0 / relative / xyz / 0.5 2.0 1.0
+cmo / printatt / mohex / -xyz- / minmax
+*
+* Exit LaGriT
+*
+finish
+

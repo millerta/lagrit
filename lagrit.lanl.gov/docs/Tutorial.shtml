@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/manual.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>LANL | LaGriT | Manual</title>
+<!-- InstanceEndEditable -->
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type" />
+<meta name="description" content="LaGriT is a library of user callable tools that provide mesh generation, mesh optimization and dynamic mesh maintenance in two and three dimensions for a variety of applications." />
+<meta name="Keywords" content="Mesh generation focused on Delaunay triangle and tetrahedral meshing. Mesh generation for geological applications. Mesh smoothing (optimization), reconnection, hybrid meshing (quadrilateral, prism, pyramid, line elements). Constructive solid geometry, Voronoi control volume area volume coefficient calculation."/>
+<!-- InstanceBeginEditable name="head" -->
+<!-- InstanceEndEditable -->
+<link media="all" title="LANLScreenStyle" href="../styles/site.css" type="text/css" rel="stylesheet" />
+<link media="print" href="http://www.lanl.gov/styles/xprint.css" type="text/css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="../styles/manual.css"/>
+</head>
+<body>
+
+<div id="manual_content">
+  <table border="0" id="mid-section1" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="237" valign="top" class="col1"><!--NOTE: you will need to adjust the following path to link to your local site include file, use a full path ie.: /source/orgs/yourdivision_acronym/yourgroup_acronym/includes/nav1.inc --> 
+        <!--#include virtual="../includes/manual.html" --> </td>
+      <td valign="top" class="col2-420"><a name="content"></a> <!-- InstanceBeginEditable name="ContentArea" -->
+        <h4><b>Tutorial -- Generating Initial Grids Using
+          the LaGriT Command Language:</b> </h4>
+        <p>The steps involved in generating
+          three dimensional grids in the LaGriT command language are:</p>
+        <ul>
+          <li>1.<a href="tutorial/definemo.shtml"> Define mesh objects.</a> </li>
+          <li>2.<a href="tutorial/defineev.shtml"> Define an enclosing volume</a>. </li>
+          <li>3.<a href="tutorial/DEFINEII.shtml"> Define interior interfaces.</a> </li>
+          <li>4.<a href="tutorial/dividereg.shtml"> Divide the enclosing volume into regions.</a> </li>
+          <li>5. <a href="tutorial/assignmt.shtml">Assign
+            material types to the regions.</a> </li>
+          <li>6.<a href="tutorial/distributep.shtml"> Distribute points within the volume.</a> </li>
+          <li>7. <a href="tutorial/connecttet.shtml">Connect
+            the points into tetrahedra</a> </li>
+        </ul>
+        <p>Detailed descriptions of the LaGriT
+          commands are given in Section II. This tutorial covers just the commands
+          needed to generate a simple grid. The tutorial will explain how to generate
+          a grid in a unit cube containing two materials separated by a plane. Lines
+          that begin with an asterisk (*) are comments; keywords are in <b>bold</b>.</p>
+        <!-- InstanceEndEditable --></td>
+    </tr>
+  </table>
+</div>
+
+<!-- OPEN include for footer area --> 
+<!--#include virtual="/source/includes/xfooter.inc" --> 
+
+<!--NOTE: you will need to adjust the following path to link to your local site include file, use a full path ie.: /source/orgs/yourdivision_acronym/includes/email.inc --> 
+<!--#include virtual="/source/orgs/ees/includes/email.inc" --> 
+
+<!-- CLOSE include for footer area -->
+
+</body>
+<!-- InstanceEnd --></html>

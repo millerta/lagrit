@@ -1,0 +1,478 @@
+<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN'
+	'http://www.w3.org/TR/html4/loose.dtd'>
+<html>
+<head>
+<!-- Gallery of project images -->
+<!-- Wed Jan 29 13:22:09 2014 --> 
+<meta name='generator' content='mk_flist by LANL [Python]' >
+<!-- LANL EES16 Grid Team Projects -->
+<title>Download LaGriT Executable and Install Instructions</title>
+
+<!-- font and style information for body and table -->
+<style type='text/css'>
+	body {color:black; background-color:white;}
+	pre {font-family:monospace;}
+	table {
+		font-family:sans-serif;
+		margin: 0 0 20px 0;
+		border-collapse:collapse;border:1px solid gray;
+		color:black;background-color:#ffffff;}
+	th {background-color:beige;}
+	th.version {background-color:darkgray;}
+	td {text-align:left;
+		padding:5px 40px 5px 10px;
+		margin:0;
+		text-valign:middle;font-family:serif;color:black;}
+	tr, th, td{border-width:0;}
+	tr:hover td {border-width:0;background-color: BurlyWood !important;}
+	table.std {font-family:sans-serif;border-width:2;background:white; }
+	td.std {text-valign:middle;text-align:left;color:black;font-family:sans-serif;font-size:100%;}
+</style>
+</head>
+<body>
+<h1>Download LaGriT Executable and Install Instructions</h1>
+<h2>2012 LaGriT Version 3.1 LACC-2012-084 </h2>
+<p><a href="#download_files">Skip introduction</a></p>
+<p>Feel free to send email if you have questions. Let us know if you have
+any problems or would like assistance getting started.</p> 
+
+<p>General documentation for LaGriT can be found at the URL: <a href='http://lagrit.lanl.gov'>lagrit.lanl.gov</a></p>
+<p>Documentation for each LaGriT module can be found at the URL: <a href='http://lagrit.lanl.gov/manual.shtml'>lagrit.lanl.gov/manual.shtml</a></p>
+<p>Some examples and meshing projects can be found in: <a href='http://meshing.lanl.gov/proj'>meshing.lanl.gov/proj</a></p>
+
+<p>To run LaGriT just type: <b>lagrit_YOUR_OS_o</b> and enter commands from the command line.<br /> 
+For example at the first command prompt you can type: <b>infile demo.lgi</b> <br />
+To run in background from a LaGriT control file type:<br />
+<b>lagrit_YOUR_OS_o < demo.lgi</b> <br/>
+<br>
+The screen for LaGriT will display a header similar to this:
+</p>
+<pre>
+
+*               * * * * * * * * * * * * * * * * * * * * * * * *                 
+*               *                                             *                 
+*               *    Program:  LaGriT V3.100   Linux m64      *                 
+*               *    date_compile: 2012/10/31   dev vers      *                 
+*               *    Run Time: 2016/May  3  07:49:14          *                 
+*               *    Manual:   http://lagrit.lanl.gov         *                 
+*               *                                             *                 
+*               * * * * * * * * * * * * * * * * * * * * * * * *                 
+
+</pre>
+<p> Note: The initial banner may contain the following message. This is just a notification will not effect the LaGriT run.  </p> 
+<pre>
+                    LaGriT code expiration date has passed.
+                      This version is no longer supported.
+</pre>
+<p> This is just a notification to encourage use of a new release and will not change how LaGriT runs.
+<br>
+See a description of all versions of LaGriT in <a href='./Release_notes.txt' target='_blank'>Relase_notes.txt</a>  </p> 
+
+
+
+<a id="download_files">
+<table border='1'>
+<tr>
+<th colspan='3' class='version'><p>LaGriT Executables V3.1 
+	 </p></th>
+</tr>
+<tr><td colspan="3" align="center">(in some browsers choose "Download" option in the right-click menu)</td>
+</tr>
+<tr>
+<th colspan=3>Linux Platform</th>
+</tr>
+<tr>
+<td>13.4 MB</td>
+                         <td><a href='./lagrit_lin32_o_gfort4.5' download>lagrit_lin32_o_gfort4.5</a></td>
+<td><em>RedHat 32-bit executable </em></td>
+</tr>
+<tr>
+<td>15.1 MB</td>
+                         <td><a href='./lagrit_lin64_o_gfort4.5' download>lagrit_lin64_o_gfort4.5</a></td>
+<td><em>RedHat 64-bit executable</em></td>
+</tr>
+<tr>
+<th colspan=3>Mac OSX Platform</th>
+</tr>
+<tr>
+<td>11.7 MB</td>
+                         <td><a href='./lagrit_macOS11_GCC4.7_o' download>lagrit_macOS11_GCC4.7_o</a></td>
+<td><em> Lion executable</em></td>
+</tr>
+<tr>
+<td>11.6 MB</td>
+                         <td><a href='./lagrit_macOS12_GCC4.8_o' download>lagrit_macOS12_GCC4.8_o</a></td>
+<td><em>Mountain Lion executable</em></td>
+</tr>
+<tr>
+<th colspan=3>Windows Platform</th>
+</tr>
+<tr>
+<td>11.2 MB</td>
+                         <td><a href='./lagrit_win_pnnl.exe' download>lagrit_win_pnnl.exe</a></td>
+<td><em>Cross compiled from Linux</em></td>
+</tr>
+</table>
+
+<table>
+<tr>
+<th colspan='3' class='version'><p>DEV VERSION LaGriT Executable V3.2 for Ubuntu Linux  
+         </p></th>
+</tr>
+<tr>
+<th colspan=3></th>
+</tr>
+<tr>
+<td>20 MB</td>
+                         <td><a href='./lagrit_ulin3.2' download>lagrit_ulin3.2</a></td>
+<td><em>Ubuntu 64-bit static executable </em></td>
+</tr>
+</table>
+
+
+<table>
+<tr>
+<th colspan='3' class='version'>LaGriT Startup Text Files</th>
+</tr>
+<tr>
+<th colspan=3></th>
+</tr>
+<tr>
+<td>8.5 KB</td>
+                         <td><a href='lagrit_documentation.tgz' target='_blank'>lagrit_documentation.tgz</a></td>
+<td><p><em>Full lagrit documentation, <br>
+  which includes:
+</em></p></td>
+</tr>
+<tr>
+<td>&mdash; 5.5 KB</td>
+                         <td><a href='./LAGRIT_install.txt' target='_blank'>LAGRIT_install.txt</a></td>
+<td><em>Installation guide</em></td>
+</tr>
+<tr>
+<td>&mdash; 6.5 KB</td>
+                         <td><a href='./README_copyright.txt' target='_blank'>README_copyright.txt</a></td>
+<td><em>Copyright notice</em></td>
+</tr>
+<tr>
+<td>&mdash; 19.1 KB</td>
+                         <td><a href='./README.txt' target='_blank'>README.txt</a></td>
+<td><em>README</em></td>
+</tr>
+<tr>
+<td>&mdash; 3.0 KB</td>
+                         <td><a href='./demo.lgi' target='_blank'>demo.lgi</a></td>
+<td><em>Simple lagrit script file</em></td>
+</tr>
+</table><table>
+<tr>
+<th colspan='3' class='version'>LaGriT Executables with Debug Compile</th>
+</tr>
+<tr>
+<th colspan=3>Linux Platform</th>
+</tr>
+<tr>
+<td>5.9 MB</td>
+                         <td><a href='./lagrit_lin32_g_gfort4.5' target='_blank' download>lagrit_lin32_g_gfort4.5</a></td>
+<td><em>RedHat 32-bit executable + debug option</em></td>
+</tr>
+<tr>
+<td>21.4 MB</td>
+                         <td><a href='./lagrit_lin64_g_gfort4.5' target='_blank' download>lagrit_lin64_g_gfort4.5</a></td>
+<td><em>RedHat 64-bit executable + debug option</em></td>
+</tr>
+<tr>
+<th colspan=3>Mac OSX Platform</th>
+</tr>
+<tr>
+<td>14.6 MB</td>
+                         <td><a href='./lagrit_macOS11_GCC4.7_g' target='_blank' download>lagrit_macOS11_GCC4.7_g</a></td>
+<td><em>Lion executable + debug option</em></td>
+</tr>
+<tr>
+<td>14.7 MB</td>
+                         <td><a href='./lagrit_macOS12_GCC4.8_g' target='_blank' download>lagrit_macOS12_GCC4.8_g</a></td>
+<td><em>Mountain Lion executable + debug option</em></td>
+</tr>
+</table>
+
+
+<p>These are graphics/code output formats used with LaGriT and may be obtained from their respective sources.</p>
+<ul>
+<li><a href='http://www.paraview.org'>ParaView</a> (free)</li>
+<li><a href='https://computing.llnl.gov/vis/visit.shtml'>VISIT</a> (free)</li>
+<li><a href='http://laws.lanl.gov/XCM/gmv/GMVHome.html'>GMV</a> (commercial)</li>
+<li><a href='http://www.avs.com'>AVS</a> (commercial) </li>
+<li><a href='http://www.tecplot.com'>Tecplot</a> (commercial)</li>
+<li><a href='http://fehm.lanl.gov'>FEHM</a> (Subsurface Flow and Transport)</li>
+<li><a href='http://www.openchannelsoftware.com/projects/GeoFEST'>GEOFEST</a> (Geophysical Finite Element Simulation Tool)</li>
+</ul>
+</p>
+
+<p>LaGriT libraries are available but they are only necessary if you plan to write your own modules. See documentation for calls to LaGriT from a Fortran or C program. Download Libraries at link below.</p>
+<table>
+<tr>
+<th colspan='3' class='version'>LaGriT Libraries</th>
+</tr>
+</table><table>
+<tr>
+<th colspan='3' class='version'>LaGriT Test Suite</th>
+</tr>
+</table>
+<h2>Previous Versions</h2>
+<p><a href="vers2_release/">Version 2</a></p>
+
+<p>If you have any publications, presentations or web pages that illustrate the application you are working on, we would appreciate it if you would send me citations, URL's or copies of the work.</p>
+<h3>Copyright Notice</h3>
+<pre>
+2012  LaGriT Version 3 LACC-2012-084 
+
+
+
+Copyright Notice: This program was prepared by Los Alamos National
+
+Security, LLC at Los Alamos National Laboratory (LANL) under contract 
+
+No. DE-AC52-06NA25396 with the U.S. Department of Energy (DOE). All rights 
+
+in the program are reserved by the DOE and Los Alamos National Security, LLC.  
+
+Permission is granted to the public to copy and use this software without 
+
+charge, provided that this Notice and any statement of authorship are 
+
+reproduced on all copies.  Neither the U.S. Government nor LANS makes any 
+
+warranty, express or implied, or assumes any liability or responsibility 
+
+for the use of this software.
+
+
+
+2007 LaGriT Version 2.0 LA-CC number: 07-038
+
+
+
+Copyright Notice: This program was prepared by Los Alamos National 
+
+Security, LLC at Los Alamos National Laboratory (LANL) under contract 
+
+No. DE-AC52-06NA25396 with the U.S. Department of Energy (DOE). All rights 
+
+in the program are reserved by the DOE and Los Alamos National Security, LLC. 
+
+Permission is granted to the public to copy and use this software without 
+
+charge, provided that this Notice and any statement of authorship are 
+
+reproduced on all copies. Neither the U.S. Government nor LANS makes any 
+
+warranty, express or implied, or assumes any liability or responsibility 
+
+for the use of this software.
+
+
+
+brine.lanl.gov% cat copyrite_libs.h
+
+LIBRARY COPYRIGHT NOTICES metis, exodus, netcdf
+
+=============================================================================
+
+
+
+metis*.* METIS 4.0.1 Copyright 1998, Regents of the University of Minnesota
+
+metis.h Copyright 1997, Regents of the University of Minnesota
+
+
+
+=============================================================================
+
+
+
+netcdf-4.1.3/COPYRIGHT
+
+Copyright 1993-2004 University Corporation for Atmospheric Research/Unidata
+
+
+
+Portions of this software were developed by the Unidata Program at the 
+
+University Corporation for Atmospheric Research.
+
+
+
+Access and use of this software shall impose the following obligations
+
+and understandings on the user. The user is granted the right, without
+
+any fee or cost, to use, copy, modify, alter, enhance and distribute
+
+this software, and any derivative works thereof, and its supporting
+
+documentation for any purpose whatsoever, provided that this entire
+
+notice appears in all copies of the software, derivative works and
+
+supporting documentation.  Further, UCAR requests that the user credit
+
+UCAR/Unidata in any publications that result from the use of this
+
+software or in any product that includes this software, although this
+
+is not an obligation. The names UCAR and/or Unidata, however, may not
+
+be used in any advertising or publicity to endorse or promote any
+
+products or commercial entity unless specific written permission is
+
+obtained from UCAR/Unidata. The user also understands that
+
+UCAR/Unidata is not obligated to provide the user with any support,
+
+consulting, training or assistance of any kind with regard to the use,
+
+operation and performance of this software nor to provide the user
+
+with any updates, revisions, new versions or "bug fixes."
+
+
+
+THIS SOFTWARE IS PROVIDED BY UCAR/UNIDATA "AS IS" AND ANY EXPRESS OR
+
+IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+
+DISCLAIMED. IN NO EVENT SHALL UCAR/UNIDATA BE LIABLE FOR ANY SPECIAL,
+
+INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING
+
+FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT,
+
+NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION
+
+WITH THE ACCESS, USE OR PERFORMANCE OF THIS SOFTWARE.
+
+
+
+=============================================================================
+
+
+
+exodus-5.22a/exodus/COPYRIGHT
+
+Copyright (c) 2005 Sandia Corporation. Under the terms of Contract
+
+DE-AC04-94AL85000 with Sandia Corporation, the U.S. Governement
+
+retains certain rights in this software.
+
+
+
+Redistribution and use in source and binary forms, with or without
+
+modification, are permitted provided that the following conditions are
+
+met:
+
+
+
+    * Redistributions of source code must retain the above copyright
+
+      notice, this list of conditions and the following disclaimer.
+
+
+
+    * Redistributions in binary form must reproduce the above
+
+      copyright notice, this list of conditions and the following
+
+      disclaimer in the documentation and/or other materials provided
+
+      with the distribution.  
+
+
+
+    * Neither the name of Sandia Corporation nor the names of its
+
+      contributors may be used to endorse or promote products derived
+
+      from this software without specific prior written permission.
+
+
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+
+
+=============================================================================
+
+
+
+include/H5Dpublic.h
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+ * Copyright by The HDF Group.                                               *
+
+ * Copyright by the Board of Trustees of the University of Illinois.         *
+
+ * All rights reserved.                                                      *
+
+ *                                                                           *
+
+ * This file is part of HDF5.  The full HDF5 copyright notice, including     *
+
+ * terms governing use, modification, and redistribution, is contained in    *
+
+ * the files COPYING and Copyright.html.  COPYING can be found at the root   *
+
+ * of the source code distribution tree; Copyright.html can be found at the  *
+
+ * root level of an installed copy of the electronic HDF5 document set and   *
+
+ * is linked from the top-level documents page.  It can also be found at     *
+
+ * http://hdfgroup.org/HDF5/doc/Copyright.html.  If you do not have          *
+
+ * access to either file, you may request a copy from help@hdfgroup.org.     *
+
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+
+
+=============================================================================
+
+
+
+
+
+
+
+</pre>
+
+</body>
+<!-- End body of gallery -->
+</html>

@@ -1,0 +1,64 @@
+ 
+ 
+*               * * * * * * * * * * * * * * * * * * * * * * * *                 
+*               *                                             *                 
+*               *    Program:  LaGriT V3.100   Linux m64      *                 
+*               *    date_compile: 2012/10/31   dev vers      *                 
+*               *    Run Time: 2016/May  2  09:26:21          *                 
+*               *    Manual:   http://lagrit.lanl.gov         *                 
+*               *                                             *                 
+*               * * * * * * * * * * * * * * * * * * * * * * * *                 
+ 
+                               -----oOo-----                                    
+                           LaGriT V3 LACC-2012-084                              
+LaGriT Copyright: This program was prepared by Los Alamos National Security, LLC
+at Los Alamos National Laboratory (LANL) under contract No. DE-AC52-06NA25396   
+with the U.S. Department of Energy (DOE). All rights in the program are reserved
+by the DOE and Los Alamos National Security, LLC. Permission is granted to the  
+public to copy and use this software without charge, provided that this Notice  
+and any statement of authorship are reproduced on all copies. Neither the       
+U.S. Government nor LANS makes any warranty, express or implied, or assumes     
+any liability or responsibility for the use of this software.                   
+                               -----oOo-----                                    
+ 
+ 
+*               * * * * * * * * * * * * * * * * * * * * * * * *                 
+                    WARNING WARNING WARNING WARNING WARNING                     
+ 
+                    LaGriT code expiration date has passed.                     
+                      This version is no longer supported.                      
+                        Visit:  http://lagrit.lanl.gov                          
+ 
+                    WARNING WARNING WARNING WARNING WARNING                     
+*               * * * * * * * * * * * * * * * * * * * * * * * *                 
+ 
+ 
+Output log file: outx3dgen                                                      
+Command log file: logx3dgen                                                     
+ 
+read avs out_hex.inp mo                                                         
+geniee                                                                          
+finish                                                                          
+cmo/status/brief                                                                
+ 
+The current-mesh-object(CMO) is: mo                                             
+ 
+  1 Mesh Object name: mo                                                        
+    number of nodes =            24        number of elements =            6    
+    dimensions geometry =         3        element type =                hex    
+    dimensions topology =         3        8 nodes      6 faces     12 edges    
+    boundary flag =        16000000        status =                   active    
+ 
+ 
+finish                                                                          
+define/COEF_B/2.0                                                               
+define/COEF_A/.1666                                                             
+define/COEF_B/4.0                                                               
+define/COEF_A/.3                                                                
+define/MIN_SCALE/4.                                                             
+define/MIN_SCALE/2.massage2/user_function.mlgi/MIN_SCALE/ref_field/.2/.01/      
+pset,get,pmove/strictmergelength                                                
+ 
+ THE PSET  get  HAS          0 POINTS                                           
+finish                                                                          
+LaGriT successfully completed                                                   

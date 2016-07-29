@@ -1,0 +1,9 @@
+read avs out_hex.inp mo                                                         
+define/COEF_B/2.0                                                               
+define/COEF_A/.1666                                                             
+define/COEF_B/4.0                                                               
+define/COEF_A/.3                                                                
+define/MIN_SCALE/4.                                                             
+define/MIN_SCALE/2.massage2/user_function.mlgi/MIN_SCALE/ref_field/.2/.01/      
+pset,get,pmove/strictmergelength                                                
+finish                                                                          

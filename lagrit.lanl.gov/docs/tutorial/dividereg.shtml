@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!-- InstanceBegin template="/Templates/tutorial.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>LANL | LaGriT | Manual</title>
+<!-- InstanceEndEditable -->
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type" />
+<meta name="description" content="LaGriT is a library of user callable tools that provide mesh generation, mesh optimization and dynamic mesh maintenance in two and three dimensions for a variety of applications." />
+<meta name="Keywords" content="Mesh generation focused on Delaunay triangle and tetrahedral meshing. Mesh generation for geological applications. Mesh smoothing (optimization), reconnection, hybrid meshing (quadrilateral, prism, pyramid, line elements). Constructive solid geometry, Voronoi control volume area volume coefficient calculation."/>
+<!-- InstanceBeginEditable name="head" -->
+<!-- InstanceEndEditable -->
+<link media="all" title="LANLScreenStyle" href="../../styles/site.css" type="text/css" rel="stylesheet" />
+<link media="print" href="http://www.lanl.gov/styles/xprint.css" type="text/css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="../../styles/manual.css"/>
+</head>
+<body>
+<div id="manual_content">
+  <table border="0" id="mid-section1" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="237" valign="top" class="col1"><!--NOTE: you will need to adjust the following path to link to your local site include file, use a full path ie.: /source/orgs/yourdivision_acronym/yourgroup_acronym/includes/nav1.inc --> 
+        <!--#include virtual="../../includes/tutorial.html" --></td>
+      <td valign="top" class="col2-420"><a name="content"></a> <!-- InstanceBeginEditable name="ContentArea" --> &nbsp;
+        <h4><b>4. <U>Divide the enclosing volumes
+          into regions</U></b> </h4>
+        <DIR> <p>The<a href="../commands/REGION.html"> <b>region</b></a> command is used to divide the enclosing volume into regions.
+        The directional operators <b>lt</b>, <b>le</b>,<b> gt</b>,<b> </b>and <b>ge </b>are applied to previously defined surfaces according to the following
+        rules.</p><DIR>
+        <p><b>lt -- </b>if the surface following
+          is a volume then <b>lt </b>means inside not including the surface of the
+          volume. If the surface is a plane or a sheet <b>lt </b>means the space
+          on the side of the plane or sheet opposite to the normal not including
+          the plane or sheet itself.</p>
+        <p><b>le -- </b>if the surface following
+          is a volume then <b>le</b> means inside including the surface of the volume.
+          If the surface is a plane or a sheet <b>le </b>means the space on the side
+          of the plane or sheet opposite to the normal including the plane or sheet
+          itself. </p>
+        <p><b>gt -- </b>if the surface following
+          is a volume then <b>gt</b> means outside not including the surface of the
+          volume. If the surface is a plane or a sheet <b>gt</b> means the space
+          on the same side of the plane or sheet as the normal not including the
+          plane or sheet itself. </p>
+        <p><b>ge -- </b>if the surface following
+          is a volume then <b>ge</b> means outside including the surface of the volume.
+          If the surface is a plane or a sheet <b>ge</b> means the space on the same
+          side of the plane or sheet as the normal including the plane or sheet itself. </p>
+        </DIR>
+        <p>In region comands, surface names must
+          be preceeded by a directional operator. The logical operators <b>or</b>, <b>and</b>, and <b>not</b> mean union, intersection and complement respectively.
+          Parentheses are operators and are used for nesting. Spaces are required
+          as delimiters to separate operators and operands. To define the two regions
+          created by the plane bisecting the unit cube:</p>
+        <DIR>
+        <pre><b>region</b>/top/ <b>le</b> cube <b>and</b> <b>gt</b> cutplane / <b>region</b>/bottom<b> /
+        le</b> cube <b>and le </b>cutplane <b>/</b> </pre>
+        </DIR>
+        <p>The region <i>bottom </i>contains the
+          interface <i>cutplane</i>; top contains none of the interface. Interior
+          interfaces must be included in one and only one region.
+          If a region touches an external
+          boundary, include the surface that defines the enclosing volume in region
+          and mregion commands. For example, the regions <i>top</i> and <i>bottom</i> are enclosed by the surface <i>cube</i></p>
+        </DIR>
+        <center>
+          <img src="../new_html/Image224.gif" height="239" width="344" />
+        </center>
+        <!-- InstanceEndEditable --></td>
+    </tr>
+  </table>
+</div>
+
+<!-- OPEN include for footer area --> 
+<!--#include virtual="/source/includes/xfooter.inc" --> 
+
+<!--NOTE: you will need to adjust the following path to link to your local site include file, use a full path ie.: /source/orgs/yourdivision_acronym/includes/email.inc --> 
+<!--#include virtual="/source/orgs/ees/includes/email.inc" --> 
+
+<!-- CLOSE include for footer area -->
+
+</body>
+<!-- InstanceEnd -->
+</html>

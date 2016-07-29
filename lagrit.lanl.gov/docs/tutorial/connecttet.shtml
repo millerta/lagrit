@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!-- InstanceBegin template="/Templates/tutorial.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>LANL | LaGriT | Manual</title>
+<!-- InstanceEndEditable -->
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type" />
+<meta name="description" content="LaGriT is a library of user callable tools that provide mesh generation, mesh optimization and dynamic mesh maintenance in two and three dimensions for a variety of applications." />
+<meta name="Keywords" content="Mesh generation focused on Delaunay triangle and tetrahedral meshing. Mesh generation for geological applications. Mesh smoothing (optimization), reconnection, hybrid meshing (quadrilateral, prism, pyramid, line elements). Constructive solid geometry, Voronoi control volume area volume coefficient calculation."/>
+<!-- InstanceBeginEditable name="head" -->
+<!-- InstanceEndEditable -->
+<link media="all" title="LANLScreenStyle" href="../../styles/site.css" type="text/css" rel="stylesheet" />
+<link media="print" href="http://www.lanl.gov/styles/xprint.css" type="text/css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="../../styles/manual.css"/>
+</head>
+<body>
+<div id="manual_content">
+  <table border="0" id="mid-section1" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="237" valign="top" class="col1"><!--NOTE: you will need to adjust the following path to link to your local site include file, use a full path ie.: /source/orgs/yourdivision_acronym/yourgroup_acronym/includes/nav1.inc --> 
+        <!--#include virtual="../../includes/tutorial.html" --></td>
+      <td valign="top" class="col2-420"><a name="content"></a> <!-- InstanceBeginEditable name="ContentArea" --> &nbsp;
+        <h4><b>7. <u>Connect the points           into tetrahedra</u></b></h4>
+        <dir> The mesh designer may use the following
+        set of command to connect the points into a tetrahedral mesh: &nbsp; <dir>
+        <pre>
+* eliminate coincident or nearly coincident points 
+* 1,0,0 means consider all points 
+<b><a href="../commands/FILTER.html">filter</a>/1,0,0/</b> 
+* rayend points are set to invisible
+* (21 is the code for invisible) 
+* they were used as end points of
+* the rays in the regnpts command 
+<b><a href="../commands/cmo/cmo_setatt.html">cmo</a>/setatt//itp/pset,get,rayend/21/</b> 
+* assign material colors to the points 
+* identify points that are on material interfaces 
+* identify constrained points
+<b><a href="../commands/SETPTS.html">setpts</a></b> 
+* connect the points into a Delaunay tetrahedral mesh 
+* do not connect across material interfaces - add points 
+* if necessary to resolve material interfaces 
+<b><a href="../commands/CONNECT1.html">connect</a></b> 
+* set element (tetrahedral) color 
+* spawn child points at material interfaces <b><a href="../commands/SETTETS.html"> 
+settets</a></b> 
+* dump mesh to some output form 
+<b>dump</b>/<b>gmv</b>/filename
+* terminate processing <b><a href="../commands/FINISH.html"> 
+finish</a></b></pre>
+        </dir> <img src="../new_html/Image229.gif" height="411" width="452" />
+        <h4>The complete input for the tutorial
+          is: </h4>
+        <dir>
+        <pre>
+* create a 3D tetrahedral mesh object and name it <i>3dmesh</i> <b>
+cmo/create</b>/3dmesh/        
+* unit cube 
+<b>surface</b>/cube/<b>reflect</b>/<b>box</b>/0.0,0.0,0.0/1.0,1.0,1.0/
+* define z=.5 plane as interface <b>
+surface </b>/cutplane/<b>intrface/plane/0.,0.,.5/1.,0.,.5/1.,1.,.5/</b>
+*define geometric regions 
+<b>region/</b>top<b>/ le </b>cube<b> and gt </b>cutplane<b> </b>/<b>region/</b>bottom<b>/ le </b>cube<b> and le </b>cutplane /<b>
+* define material regions</b> 
+<b>mregion/</b>mattop<b>/ le </b>cub<b>e and gt </b>cutplane /<b>mregion/</b>matbot<b>/ le </b>cube<b> and lt </b>cutplane /
+* create 25 points (5x5x1) in a plane above the unit cube 
+* place points on the boundaries in the x and y directions (1,1,0) 
+<b>createpts/xyz/</b>5,5,1/0.,0.,1.1/1.,1.,1.1/1,1,0/ 
+* give the points defined by the createpts command the name, rayend 
+<b>pset/</b>rayend<b>/seq/</b>1,0,0/
+* create rays between points in rayend and the plane below the cube 
+* distribute 3 points along these rays in the region top 
+* add one point at the upper external boundary for each ray <b>
+regnpts</b>/top/3/<b>pset</b>,<b>get</b>,rayend/<b>xyz</b>/0.,0.,-.1/0.,1.,-.1/1.,1.,-.1/0,0/
+* distribute 4 points along these rays in the region <i>bottom</i>
+* add one point at the lower external boundary for each ray 
+* add one point at the material interface for each ray since 
+* <i>bottom</i> contains the interface  - a total of 5 points for each ray.
+* points will be distributed such that the ratio of distances between 
+* any two consecutive pairs of points
+* is 0.6 traveling from the source * of the ray (the plane) to the ray end. <b>
+regnpts</b>/bottom/4/<b>pset</b>,<b>get</b>,rayend/<b>xyz</b>/0.,0.,-.1/0.,1.,-.1/1.,1.,-.1/1,.6/
+* eliminate coincident or nearly coincident points * 1,0,0 means consider all points <b>
+filter/1,0,0/</b> 
+* rayend points are set to invisible (21 is the code for invisible) 
+* they were used as end points of the rays in the regnpts command 
+<b>cmo/setall//itp/pset,get,</b>rayend/21<b>/</b>
+* assign material colors to the points 
+* identify points that are on material interfaces 
+* identify constrained points <b>
+setpts</b> 
+* connect the points into a Delaunay tetrahedral mesh 
+* do not connect across material interfaces - 
+* add points if necessary to resolve material interfaces <b>
+connect</b> 
+* set element (tetrahedral) type <b>
+settets</b> 
+* dump mesh to some output form <b>
+dump/gmv</b>/filename 
+* terminate processing <b>
+finish</b>
+        </pre>
+        </dir> </dir> <!-- InstanceEndEditable --></td>
+    </tr>
+  </table>
+</div>
+
+<!-- OPEN include for footer area --> 
+<!--#include virtual="/source/includes/xfooter.inc" --> 
+
+<!--NOTE: you will need to adjust the following path to link to your local site include file, use a full path ie.: /source/orgs/yourdivision_acronym/includes/email.inc --> 
+<!--#include virtual="/source/orgs/ees/includes/email.inc" --> 
+
+<!-- CLOSE include for footer area -->
+
+</body>
+<!-- InstanceEnd -->
+</html>

@@ -1,0 +1,204 @@
+
+General documentation for LaGriT can be found at the URL:
+http://lagrit.lanl.gov
+
+Documentation for each LaGriT module can be found at the URL:
+http://lagrit.lanl.gov/manual.shtml
+
+Some examples and project archives can be found in:
+http://meshing.lanl.gov/proj
+
+
+Name conventions for LaGriT executables:
+OS Systems:
+
+Linux compiled with -m32 =  lin32
+Linux compiled with -m64 =  lin64
+Mac OSX Lion             =   macOS11 
+Mac OSX Mountain Lion    =   macOS12 
+WINDOWS                  =   win
+
+Compiler optimized versions of LaGriT (recommended) = _o 
+Compiler debug versions of LaGriT (for developers/advanced users) = _g
+Compilers are mainly gfortran and GCC gfortran with version such as GCC4.7
+
+
+The mesh graphics output formats that are normally used are:
+ParaView - (free)       http://www.paraview.org
+VISIT      (free)       https://computing.llnl.gov/vis/visit.shtml
+GMV -      (commercial) http://laws.lanl.gov/XCM/gmv/GMVHome.html
+AVS -      (commercial) http://www.avs.com
+Tecplot -  (commercial) http://www.tecplot.com
+
+The model code output formats that are normally used are:
+FEHM    -  (Subsurface Flow and Transport) http://fehm.lanl.gov
+PFLOTRAN http://ees.lanl.gov/pflotran/
+ExodusII (limited support)  http://www.osti.gov/scitech/biblio/10102115
+GEOFEST -  (Geophysical Finite Element Simulation Tool)
+http://www.openchannelsoftware.com/projects/GeoFEST
+
+
+For demos and examples see:
+http://meshing.lanl.gov/proj
+
+demo.lgi is a simple LaGriT control file available from download (also bottom of this file). 
+
+To run LaGriT from the command line, first insure the LaGriT control 
+file demo.lgi is in your current working directory, execute the program 
+and enter the following two commands:
+   % lagrit_YOUR_OS_o
+       infile demo.lgi
+       finish
+
+To run in background from a LaGriT control file type:
+   % lagrit_YOUR_OS_o < demo.lgi
+
+LaGriT modules can also be called from within a Fortran/C program. 
+See documentation.
+
+Feel free to send email if you have questions.
+Let me know if you have any problems or would like any assistance.
+
+Dr. Carl W. Gable
+Group Leader, Computational Earth Science, EES-16
+
+MS T003, Los Alamos National Laboratory, Los Alamos NM 87545
+Email:gable@lanl.gov   Voice:505-665-3533   Fax:505-665-6459
+
+Homepage:                        http://www.ees.lanl.gov/staff/gable
+LaGriT Mesh Generation Software:  http://lagrit.lanl.gov
+Mesh Generation, Geological Apps: http://meshing.lanl.gov
+
+
+attachment <demo.lgi> ------------------------------------------------
+*
+* Simple LaGriT demo control file
+*
+* Carl Gable
+* gable@lanl.gov
+*
+* Other examples can be found in:
+* http://meshing.lanl.gov/proj/index.shtml
+* and
+* https://lagrit.lanl.gov/docs/demos/index.html
+*
+************************************************************
+*
+* Create a cube hex grid
+*
+cmo / create / mohex / / / hex
+createpts / brick / xyz / 2 3 4 / -1. -1. -1. / 1. 1. 1. / 1 1 1
+*
+* Set all elements to 'color' (attribute itetclr)  = 1
+cmo / setatt / mohex / itetclr / 1 0 0 / 1
+*
+* Set a few elements to 2
+*
+cmo / setatt / mohex / itetclr / 1 3 1 / 2
+*
+* Set all of the node 'colors' (attribute imt, integer material type) = 1
+*
+cmo / setatt / mohex / imt / 1 0 0 / 1
+*
+* Set nodes with z coordinate > 0.8 to imt = 2
+*
+pset / p_reset / attribute / zic / 1 0 0 / 0.8 / gt
+cmo / setatt / mohex / imt / pset get p_reset / 2
+quality
+*
+* Output the mesh as an AVS file
+*
+dump / avs2 / out_hex.inp / mohex
+*
+* Create a unit cube tet grid
+*
+* Convert each hex to 5 tets
+hextotet / 5 / motet5 / mohex
+quality
+* Convert each hex to 6 tets
+hextotet / 6 / motet6 / mohex
+quality
+* Convert each hex to 24 tets
+hextotet / 24 / motet24 / mohex
+quality
+*
+* Output results to files
+*
+dump / avs2 / out_tet5.inp / motet5
+dump / avs2 / out_tet6.inp / motet6
+dump / avs2 / out_tet24.inp / motet24
+*
+* Create a cylinder tet grid using Delaunay connect algorithm
+*
+* Define some variables to use in creating point distribution.
+*
+define / NR / 12
+define / NT / 37
+define / NZ /  9
+cmo / create / motet / / / tet
+createpts/rtz/NR,NT,NZ/0.,0.,0./3.,360.,4./1,0,1
+*
+* Remove coincident points
+*
+filter / 1 0 0
+rmpoint / compress
+*
+* Connect the points
+*
+connect
+* Output results to files
+dump / avs2 / out_tet_cyl.inp / motet
+dump / gmv  / out_tet_cyl.gmv / motet
+*
+* Compute the intersection of elements of mohex with motet
+* A attribute call if_inter will be created. If that attribute
+* is 0, the elements do not intersect, if it is > 0, the integer
+* indicates the number of intersections.
+*
+intersect_elements / motet / mohex / if_inter
+dump / avs2 / out_tet_cyl_inter.inp / motet
+*
+* Merge the two grids into a single mesh object
+*
+addmesh / append / mo_all / mohex motet
+dump / avs2 / out_append.inp / mo_all
+*
+* Do a little bit of clean up.
+cmo / delete / motet5
+cmo / delete / motet6
+cmo / delete / motet24
+cmo / delete / mo_all
+*
+* Interpolate properties from the hex mesh onto the tet mesh
+*
+* Create an attribute to hold the results
+*
+cmo / addatt / motet / att_interp / vdouble / scalar / nnodes
+*
+* Interpolate hex mesh attribute xic (use x coordinate as the source
+* attribute) onto
+* the tet mesh attribute, att_interp.
+*
+interpolate / continuous / motet / att_interp / 1 0 0 / mohex / xic
+dump / avs2 / out_interpolate.inp / motet
+dump / gmv  / out_tet_cyl_interp.gmv / motet
+*
+* Translate the hex mesh.
+*
+cmo / printatt / mohex / -xyz- / minmax
+cmo / select / mohex
+trans / 1 0 0 / 0. 0. 0. / 1. 2. 3.
+cmo / printatt / mohex / -xyz- / minmax
+*
+* Scale the hex mesh
+*
+scale/ 1 0 0 / relative / xyz / 0.5 2.0 1.0
+cmo / printatt / mohex / -xyz- / minmax
+*
+* Exit LaGriT
+*
+finish
+
+
+
+----------------------------------------------------------------------

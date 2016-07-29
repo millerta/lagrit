@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!-- InstanceBegin template="/Templates/tutorial.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>LANL | LaGriT | Manual</title>
+<!-- InstanceEndEditable -->
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type" />
+<meta name="description" content="LaGriT is a library of user callable tools that provide mesh generation, mesh optimization and dynamic mesh maintenance in two and three dimensions for a variety of applications." />
+<meta name="Keywords" content="Mesh generation focused on Delaunay triangle and tetrahedral meshing. Mesh generation for geological applications. Mesh smoothing (optimization), reconnection, hybrid meshing (quadrilateral, prism, pyramid, line elements). Constructive solid geometry, Voronoi control volume area volume coefficient calculation."/>
+<!-- InstanceBeginEditable name="head" -->
+<!-- InstanceEndEditable -->
+<link media="all" title="LANLScreenStyle" href="../../styles/site.css" type="text/css" rel="stylesheet" />
+<link media="print" href="http://www.lanl.gov/styles/xprint.css" type="text/css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="../../styles/manual.css"/>
+</head>
+<body>
+<div id="manual_content">
+  <table border="0" id="mid-section1" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="237" valign="top" class="col1"><!--NOTE: you will need to adjust the following path to link to your local site include file, use a full path ie.: /source/orgs/yourdivision_acronym/yourgroup_acronym/includes/nav1.inc --> 
+        <!--#include virtual="../../includes/tutorial.html" --></td>
+      <td valign="top" class="col2-420"><a name="content"></a> <!-- InstanceBeginEditable name="ContentArea" --> &nbsp;
+        <h4><b>3. <u>Define interior   interfaces</u></b></h4>
+        <dir> 
+        <p>Interfaces are defined with the <b><a href="../commands/SURFACE.html">surface</a></b> command. In this case the boundary type is <b>intrface</b>. If the command
+          defines a volume (e.g. box, cylinder) then the interface is the surface
+          of the volume defined. If the command defines a plane or sheet then the
+          interface is the plane or sheet. It is important to remember that planes
+          are infinite and that the order of points specifying the plane determines
+          a normal to the plane in the usual right-hand-rule sense
+          (<a href="../conventions.html">see
+            Section II.a.9</a>). This direction is important in determining regions.
+          In order to divide the unit cube defined above in half vertically, define
+          a plane by:
+        </p>
+        <pre><b>surface</b>/cutplane/<b>intrface</b>/<b>plane</b>/0.,0.,.5/1.,0.,.5/1.,1.,.5/ </pre>
+        <p>The normal to this plane points in   the positive z direction. </p>
+        <p><img src="../new_html/Image222.gif" height="249" width="326" /> </p>
+        <p>Interfaces must not be coincident
+          with reflective boundaries. For example to embed a rectangle inside a cube,
+          it is necessary to extend the ends of the rectangle beyond the cube to
+          avoid coincident reflective and interface surfaces: </p>
+        <pre><b>surface</b>/cube/<b>reflect</b>/<b>box</b>/0.0,0.0,0.0/1.0,1.0,1.0/
+<b>surface</b>/rect <b>/intrface/box</b>/-0.1,0.5,0.2/1.1,0.6,0.5/
+</pre>
+        <p><img src="../new_html/Image223.gif" height="272" width="273" /> &nbsp; &nbsp; </p>
+        </dir> <!-- InstanceEndEditable --></td>
+    </tr>
+  </table>
+</div>
+
+<!-- OPEN include for footer area --> 
+<!--#include virtual="/source/includes/xfooter.inc" --> 
+
+<!--NOTE: you will need to adjust the following path to link to your local site include file, use a full path ie.: /source/orgs/yourdivision_acronym/includes/email.inc --> 
+<!--#include virtual="/source/orgs/ees/includes/email.inc" --> 
+
+<!-- CLOSE include for footer area -->
+
+</body>
+<!-- InstanceEnd -->
+</html>

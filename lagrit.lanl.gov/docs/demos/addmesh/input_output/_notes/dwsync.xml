@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dwsync>
+<file name="compare_add" server="publish.lanl.gov//www/dev-green/docs/orgs/ees/lagrit/" local="127888218560000000" remote="127888218560000000" />
+<file name="compare_amr" server="publish.lanl.gov//www/dev-green/docs/orgs/ees/lagrit/" local="127888218560000000" remote="127888218560000000" />
+<file name="compare_delete" server="publish.lanl.gov//www/dev-green/docs/orgs/ees/lagrit/" local="127888218560000000" remote="127888218560000000" />
+<file name="compare_match" server="publish.lanl.gov//www/dev-green/docs/orgs/ees/lagrit/" local="127888218560000000" remote="127888218560000000" />
+<file name="compare_merge" server="publish.lanl.gov//www/dev-green/docs/orgs/ees/lagrit/" local="127888218560000000" remote="127888218560000000" />
+<file name="input_mesh1.gmv" server="publish.lanl.gov//www/dev-green/docs/orgs/ees/lagrit/" local="127887239820000000" remote="127887239820000000" />
+<file name="input_mesh1.gmvF" server="publish.lanl.gov//www/dev-green/docs/orgs/ees/lagrit/" local="127887239820000000" remote="127887239820000000" />
+<file name="input_mesh2.gmvF" server="publish.lanl.gov//www/dev-green/docs/orgs/ees/lagrit/" local="127887239820000000" remote="127887239820000000" />
+<file name="input_mesh3.gmv" server="publish.lanl.gov//www/dev-green/docs/orgs/ees/lagrit/" local="127887239820000000" remote="127887239820000000" />
+<file name="input_mesh3.gmvF" server="publish.lanl.gov//www/dev-green/docs/orgs/ees/lagrit/" local="127887239830000000" remote="127887239830000000" />
+<file name="input_mesh4.gmvF" server="publish.lanl.gov//www/dev-green/docs/orgs/ees/lagrit/" local="127887239830000000" remote="127887239830000000" />
+<file name="lagrit_input_add" server="publish.lanl.gov//www/dev-green/docs/orgs/ees/lagrit/" local="127888218570000000" remote="127888218570000000" />
+<file name="lagrit_input_amr" server="publish.lanl.gov//www/dev-green/docs/orgs/ees/lagrit/" local="127888218570000000" remote="127888218570000000" />
+<file name="lagrit_input_append" server="publish.lanl.gov//www/dev-green/docs/orgs/ees/lagrit/" local="127888218570000000" remote="127888218570000000" />
+<file name="lagrit_input_delete" server="publish.lanl.gov//www/dev-green/docs/orgs/ees/lagrit/" local="127888218570000000" remote="127888218570000000" />
+<file name="lagrit_input_inter" server="publish.lanl.gov//www/dev-green/docs/orgs/ees/lagrit/" local="127888218570000000" remote="127888218570000000" />
+<file name="lagrit_input_match" server="publish.lanl.gov//www/dev-green/docs/orgs/ees/lagrit/" local="127888218570000000" remote="127888218570000000" />
+<file name="lagrit_input_merge" server="publish.lanl.gov//www/dev-green/docs/orgs/ees/lagrit/" local="127888218570000000" remote="127888218570000000" />
+<file name="logx3dgen" server="publish.lanl.gov//www/dev-green/docs/orgs/ees/lagrit/" local="127887239830000000" remote="127887239830000000" />
+<file name="output_add" server="publish.lanl.gov//www/dev-green/docs/orgs/ees/lagrit/" local="127887239850000000" remote="127887239850000000" />
+<file name="output_amr.gmv" server="publish.lanl.gov//www/dev-green/docs/orgs/ees/lagrit/" local="127887239850000000" remote="127887239850000000" />
+<file name="output_amr.log" server="publish.lanl.gov//www/dev-green/docs/orgs/ees/lagrit/" local="127887239860000000" remote="127887239860000000" />
+<file name="output_append" server="publish.lanl.gov//www/dev-green/docs/orgs/ees/lagrit/" local="127887239860000000" remote="127887239860000000" />
+<file name="output_append.gmv" server="publish.lanl.gov//www/dev-green/docs/orgs/ees/lagrit/" local="127887239860000000" remote="127887239860000000" />
+<file name="output_append.log" server="publish.lanl.gov//www/dev-green/docs/orgs/ees/lagrit/" local="127887239860000000" remote="127887239860000000" />
+<file name="output_delete" server="publish.lanl.gov//www/dev-green/docs/orgs/ees/lagrit/" local="127887239860000000" remote="127887239860000000" />
+<file name="output_delete.gmv" server="publish.lanl.gov//www/dev-green/docs/orgs/ees/lagrit/" local="127887239860000000" remote="127887239860000000" />
+<file name="output_delete.log" server="publish.lanl.gov//www/dev-green/docs/orgs/ees/lagrit/" local="127887239870000000" remote="127887239870000000" />
+<file name="output_intersect.log" server="publish.lanl.gov//www/dev-green/docs/orgs/ees/lagrit/" local="127887239870000000" remote="127887239870000000" />
+<file name="output_match" server="publish.lanl.gov//www/dev-green/docs/orgs/ees/lagrit/" local="127887239870000000" remote="127887239870000000" />
+<file name="output_merge" server="publish.lanl.gov//www/dev-green/docs/orgs/ees/lagrit/" local="127887239880000000" remote="127887239880000000" />
+<file name="output_merge.gmv" server="publish.lanl.gov//www/dev-green/docs/orgs/ees/lagrit/" local="127887239880000000" remote="127887239880000000" />
+<file name="output_merge.log" server="publish.lanl.gov//www/dev-green/docs/orgs/ees/lagrit/" local="127887239880000000" remote="127887239880000000" />
+<file name="outx3dgen" server="publish.lanl.gov//www/dev-green/docs/orgs/ees/lagrit/" local="127887239880000000" remote="127887239880000000" />
+<file name="polygon.gmv" server="publish.lanl.gov//www/dev-green/docs/orgs/ees/lagrit/" local="127887239890000000" remote="127887239890000000" />
+<file name="polygon.inp" server="publish.lanl.gov//www/dev-green/docs/orgs/ees/lagrit/" local="127887239890000000" remote="127887239890000000" />
+<file name="time_add" server="publish.lanl.gov//www/dev-green/docs/orgs/ees/lagrit/" local="127887239890000000" remote="127887239890000000" />
+<file name="time_amr" server="publish.lanl.gov//www/dev-green/docs/orgs/ees/lagrit/" local="127887239890000000" remote="127887239890000000" />
+<file name="time_delete" server="publish.lanl.gov//www/dev-green/docs/orgs/ees/lagrit/" local="127887239890000000" remote="127887239890000000" />
+<file name="time_match" server="publish.lanl.gov//www/dev-green/docs/orgs/ees/lagrit/" local="127887239890000000" remote="127887239890000000" />
+<file name="time_merge" server="publish.lanl.gov//www/dev-green/docs/orgs/ees/lagrit/" local="127887239890000000" remote="127887239890000000" />
+</dwsync>

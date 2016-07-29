@@ -1,0 +1,14 @@
+#!/bin/csh -f
+# link to original download data in /n/swqa/LAGRIT 
+#
+echo Link files to $cwd
+set data_dir = "/n/swqa/LAGRIT/VERS_3.1_013_NOV/bin/" 
+set this_dir = $cwd
+echo from $data_dir 
+cd $data_dir
+foreach f (lagrit*)
+ln -s $data_dir/$f $this_dir/$f
+#chmod +w $this_dir/$f
+echo $f
+cp $data_dir/*.txt .
+end

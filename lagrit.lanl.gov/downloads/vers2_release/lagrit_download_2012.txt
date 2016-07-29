@@ -1,0 +1,88 @@
+
+======================================================================
+======================================================================
+Feel free to send email if you have questions. Let me know if you have
+any problems or would like assistance getting started.
+
+General documentation for LaGriT can be found at the URL:
+http://lagrit.lanl.gov
+Documentation for each LaGriT module can be found at the URL:
+http://lagrit.lanl.gov/manual.shtml
+Some examples and project archives can be found in:
+http://meshing.lanl.gov/proj
+
+If you have any publications, presentations or web pages that illustrate
+the application you are working on, I would appreciate it if you would
+send me citations, URL's or copies of the work.
+
+FTP Site and commands for LaGriT download:
+ftp ftp.lanl.gov
+login: anonymous
+password: your email address
+cd /public/gable/lagrit
+get lagrit_YOUR_OS_o (where YOUR_OS is either lin, mac, sun, etc.)
+quit
+chmod +x lagrit_YOUR_OS_o
+
+There are optimized versions of LaGriT (recommended):
+Linux:                     lagrit_lin_o
+Mac OS X (Intel chip):     lagrit_maci_o
+Mac OS X:(non-Intel chip): lagrit_mac_o
+Solaris:                   lagrit_sun_o
+SGI_32bit:                 lagrit_sgi32_o
+
+There are debugger versions of LaGriT (for developers/advanced users):
+Linux:                     lagrit_lin_g
+Mac OS X (Intel chip):     lagrit_maci_g
+Mac OS X (non-Intel chip): lagrit_mac_g
+Solaris:                   lagrit_sun_g
+SGI_32bit:                 lagrit_sgi32_g
+
+There are also libraries available but they are only necessary if you
+plan to write your own modules. They are on the FTP site and you are
+welcome to download.
+
+The graphics/code output formats that are normally used are:
+ParaView - (free)       http://www.paraview.org
+VISIT      (free)       https://computing.llnl.gov/vis/visit.shtml
+GMV -      (commercial) http://laws.lanl.gov/XCM/gmv/GMVHome.html
+AVS -      (commercial) http://www.avs.com
+Tecplot -  (commercial) http://www.tecplot.com
+FEHM    -  (Subsurface Flow and Transport) http://fehm.lanl.gov
+GEOFEST -  (Geophysical Finite Element Simulation Tool)
+http://www.openchannelsoftware.com/projects/GeoFEST
+
+These are not related to LaGriT and may be obtained from their
+respective sources.
+
+For demos and examples see:
+http://meshing.lanl.gov/proj
+Also, a simple demo input file is attached.
+
+To run LaGriT just type: lagrit_YOUR_OS_o
+and enter commands from the command line. For example at the first command prompt
+you can type: infile demo.lgi
+To run in background from a LaGriT control file type:
+lagrit_YOUR_OS_o<                                  demo.lgi
+LaGriT modules can also be called from within a Fortran/C program. See
+documentation.
+
+Feel free to send email if you have questions.
+Let me know if you have any problems or would like any
+assistance.
+
+Cheers,
+Carl Gable
+
+LaGriT Copyright:
+This program was prepared by Los Alamos National Security, LLC at Los
+Alamos National Laboratory (LANL) under contract No. DE-AC52-06NA25396
+with the U.S. Department of Energy (DOE). All rights in the program are
+reserved by the DOE and Los Alamos National Security, LLC.  Permission
+is granted to the public to copy and use this software without charge,
+provided that this Notice and any statement of authorship are reproduced
+on all copies.  Neither the U.S. Government nor LANS makes any warranty,
+express or implied, or assumes any liability or responsibility for the
+use of this software.
+
+attachment <demo.lgi>

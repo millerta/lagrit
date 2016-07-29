@@ -1,0 +1,429 @@
+#!/usr/bin/env python 
+
+'''This script generates a gallery library.
+Outputs file_list.html file that lists the files awailable in the 
+specified directory.
+*******************************************************************************
+Default Usage: mk_flist     
+    uses current directory to read/write files
+
+Usage: mk_flist file.html
+    uses current directory to read files and create file with the name file.html
+    * the web page has to have a valid web page extension: 
+    * .html, .htm, .php, .shtml
+    * to add other extensions alter web_extensions list
+    * in is_web_page function
+
+Usage: mk_flist /path/to/directory/
+    uses default web page name, i.e. file_list.html and
+    the specified path to read/write files
+
+Usage: mk_flist /path/to/directory/ file.html
+    * The argument order DOESN'T matter
+    uses specified path to read/write files and
+    creates the file with the name file.html
+*******************************************************************************
+
+The script creates the header for the webpage. To enter the name of the program
+in the header, change the program_name variable, 
+located after the imports
+
+Then it looks for info.inc file to enter it under the header. 
+the name of the file is in the info_file variable, 
+located in the if '__main__': clause. 
+
+Then the script creates the table with the executables. 
+
+Lastly, the scrypt publishes Copiright Notice, 
+located in the file README_copyright.txt.
+To change the name of the copyright file, call the function
+write_copyright with the second argument for the copyright file:
+
+def write_copyright(file_, copyright_file = "README_copyright.txt")
+
+The function call is in the if '__main__': clause.
+
+There is an option loop_through in the if __main__ clause
+If we don't want to loop into the sub directories and create html
+files there, we have an option to set loop_through = 0 . 
+Otherwhise, it should has non zero value. 
+
+__author__="Terry Miller, Lucia Short"
+__copyright__ = "Copyright 2013, Los Alamos National Security, LLC"
+__credits__ = ["Terry Miller", "Lucia Short"]
+
+__version__="0.0.0"
+__status__="Development"
+'''
+
+###############################################################################
+#                                                                             #
+# Copyright, 2013, Los Alamos National Security, LLC.                         #
+#                                                                             #
+# This software was produced under a U.S. Government contract by Los Alamos   #
+# National Laboratory, which is operated by Los Alamos National Security,     #
+# LLC., under Contract No. DE-AC52-06NA25396 with the U.S. Department of      #
+# Energy.                                                                     #
+#                                                                             #
+# The U.S. Government is licensed to use, reproduce, and distribute this      #
+# software. Permission is granted to the public to copy and use this software #
+# without charge, provided that this Notice and any statement of authorship   #
+# are reproduced on all copies.                                               #
+#                                                                             #
+# Neither the Government nor the Los Alamos National Security, LLC., makes    #
+# any warranty, express or implied, or assumes any liability or               #
+# responsibility for the use of this software.                                #
+#                                                                             #
+###############################################################################
+
+# /usr/local/bin/python -> python3.2    
+# NOTE: this uses python before vers 3
+#                newer versions use print as function not statement
+# /usr/bin/env python was old
+#    /n/local_linux/epd/bin/python2.7
+
+import os, sys, time
+import glob
+
+from datetime import date
+
+program_name = "LaGriT"
+
+def write_header(file_):
+    '''Generates the headers and style sheet for the html page
+    '''
+    global program_name
+    header = "Download " + program_name + " Executable and Install Instructions"
+    header_content = [
+            "<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN'",
+            "\t'http://www.w3.org/TR/html4/loose.dtd'>",
+            "<html>",
+            "<head>",
+            "<!-- Gallery of project images -->",
+            "<!-- " + time.asctime(time.localtime(time.time())) + " --> ",
+            "<meta name='generator' content='mk_flist by LANL [Python]' >",
+            "<!-- LANL EES16 Grid Team Projects -->",
+            "<title>" + header + "</title>",
+            "\n<!-- font and style information for body and table -->",
+            "<style type='text/css'>",
+            "\tbody {color:black; background-color:white;}",
+            "\tpre {font-family:monospace;}",
+            "\ttable {",
+            "\t\tfont-family:sans-serif; border-collapse:collapse;border:1px solid gray;",
+            "\t\tcolor:black;background-color:#ffffff;}",
+            "\tth {background-color:beige;}",
+            "\tth.version {background-color:darkgray;}",
+            "\ttd {text-align:left;",
+            "\t\tpadding:5px 40px 5px 10px;",
+            "\t\tmargin:0;",
+            "\t\ttext-valign:middle;font-family:serif;color:black;}",
+            "\ttr, th, td{border-width:0;}",
+            "\ttr:hover td {border-width:0;background-color: BurlyWood !important;}",
+            "\ttable.std {font-family:sans-serif;border-width:2;background:white; }",
+            "\ttd.std {text-valign:middle;text-align:left;color:black;font-family:sans-serif;font-size:100%;}",
+            "</style>",
+            "</head>",
+            "<body>",
+            "<h1>" + header + "</h1>",
+    ]
+    #write the content of the header
+    #adding the line break after every line
+    for lines in header_content:
+        file_.write(lines + '\n');
+
+def get_file_names(directory, ls_pattern = ('*'), subdirectory = "./"):
+    '''Get all the files in the directory 
+    check if they are files (not directories)
+    and create tuples (file_name, size)
+    '''
+    # get the size of the main directory
+    # we'll be using it later
+    size_ = len(directory)
+    # create a new directory with the subdirectory added to it
+    directory = directory + subdirectory
+    if not directory.endswith('/'):
+        directory += '/'
+    #get all the files in the directory
+    file_list = []
+    for pattern in ls_pattern:
+        #print pattern
+        file_list.extend(glob.glob(directory + pattern))
+
+    #print file_list
+    #get the length of the directory
+    #we'll use it to remove it from the path to the file
+    file_list = [files[size_:] for files in file_list if os.path.isfile(files)]
+    ################################################################
+    # remove extra files, like page_name if exist
+    ################################################################
+    extra_f = [page_name, "mk_flist.py", "link.scr"]
+    for item in extra_f:
+        if item in file_list:
+            file_list.remove(item)
+    #form tuples in the following form:
+    #(file_name, size)
+    #here we have a little check up in the if clause if it is a file
+    #(we don't want to have directories in the list)
+    file_list = [(files,os.path.getsize(files)) \
+            for files in file_list if os.path.isfile(files)]
+    return file_list
+
+def human_readable_size(size):
+    '''Gets integer size in bites and converts it to 
+    human readable string.
+    Currently the multiples of bytes used are byte, kilobyte, megabyte, gigabyte, terabyte.
+    As of today, it is more than enough for the web.
+    '''
+    for byte_multiple in ['B', 'KB', 'MB', 'GB', 'TB']: 
+        if size < 1024.0:
+            return "%3.1f %s" % (size, byte_multiple)
+        size /= 1024.0
+
+def set_links(file_list):
+    platforms = ['lin', 'mac', 'win']
+    headers = ['Linux Platform', 
+            'Mac OSX Platform', 
+            'Windows Platform',
+            ]
+    link_list = []
+
+    #while len(file_list) > 0:
+    for i in range(0, len(platforms)+1):
+        # since we use here len(platforms)+1, we need to check if 
+        # i is in the range of len(platforms)
+        if i < len(platforms):
+            # get all the files that contain platform symbol
+            content_ls = [(files, size_) for (files, size_) in file_list if platforms[i] in files]
+            # get the rest of the files
+            file_list = [(files, size_) for (files, size_) in file_list if platforms[i] not in files]
+        else:
+            content_ls = []
+
+        if len(content_ls)>0:
+            header_content = headers[i]
+        elif len(file_list)>0:
+            header_content = "User Documentation"
+            content_ls = file_list
+            file_list = []
+        if len(content_ls)>0:
+            link_list.append( "<th colspan=3>" + header_content + "</th>" )
+            for (files, size_) in content_ls:
+                # generate the string for the file
+                index_ = files.find('/')
+                if index_ < 0:
+                    index_ = 0
+                else:
+                    index_ += 1
+
+                #generate other header
+                header_line = files[index_:-4]
+                header_line = header_line.replace('_', ' ')
+                        
+                line = "<td>" + human_readable_size(size_) + "</td>\n \
+                        <td><a href='" + files + \
+                        "' target='_blank'>" + files[index_:] + \
+                        "</a></td>\n<td><em>" + header_line + "</em></td>"
+                link_list.append(line)
+    return link_list
+
+def generate_content(directory, subdirectory):
+    '''Generate the content table with the headers
+    and links.
+    '''
+    #get documentation
+    #    Executables optimized _o
+    #    Debug option files _g
+    tbl_headers = [
+            "Executables",
+            "Documentation", 
+            "Executables with Debug Option"
+            ]
+
+    # Regex pattern for the file search
+    # The position should match the headers position
+    regex_patterns = [
+            ('lagrit_*_o*', 'lagrit_win*'), 
+            ('*.txt', '*.doc', '*.pdf'), 
+            (['lagrit_*[!_o]_g*'])
+            ]
+
+    # start the content generation
+    content = []
+    for iterator in range(0, len(tbl_headers)):
+        if tbl_headers[iterator] == "Executables with Debug Option":
+            line = "<th colspan='3'>" + tbl_headers[iterator] + "</th>"
+            content.append(line)
+        ln_files = set_links(get_file_names(directory, regex_patterns[iterator], subdirectory))
+        content = content + ln_files
+
+    return content
+
+def write_content(file_, content, links = []) :
+    '''Writes the content to the file
+    '''
+    #add line break to the content
+    file_.write("<table border='1'>\n")
+    content = [line+'\n' for line in content]
+    for line in content:
+        file_.write("<tr>\n" + line + "</tr>\n")
+    file_.write("</table>\n")
+    if len(links)>0:
+        file_.write("<h2>Previous Versions</h2>\n")
+        for (content, href) in links:
+            file_.write('<p><a href="' + href + '">' + content + '</a></p>\n')
+
+def write_copyright(file_, copyright_file = "README_copyright.txt"):
+    '''Check if the copyright file <copyright_file> exists
+    and write the copyrite note.
+    By default the copyright_file is "README_copyright.txt".
+    If the file doesn't exist, write general Lab's copyright
+    '''
+    file_.write("<h3>Copyright Notice</h3>\n")
+    file_.write("<pre>\n")
+
+    # check if the copyright file exists
+    if os.path.isfile(copyright_file):
+        copyright = open(copyright_file, 'r')
+    else:
+        copyright = [ 
+                "###############################################################################",
+                '#                                                                             #',
+                '# Copyright, ' + str(date.today().year) +  
+                        ', Los Alamos National Security, LLC.                         #',
+                '#                                                                             #',
+                '# This software was produced under a U.S. Government contract by Los Alamos   #',
+                '# National Laboratory, which is operated by Los Alamos National Security,     #',
+                '# LLC., under Contract No. DE-AC52-06NA25396 with the U.S. Department of      #',
+                '# Energy.                                                                     #',
+                '#                                                                             #',
+                '# The U.S. Government is licensed to use, reproduce, and distribute this      #',
+                '# software. Permission is granted to the public to copy and use this software #',
+                '# without charge, provided that this Notice and any statement of authorship   #',
+                '# are reproduced on all copies.                                               #',
+                '#                                                                             #',
+                '# Neither the Government nor the Los Alamos National Security, LLC., makes    #',
+                '# any warranty, express or implied, or assumes any liability or               #',
+                '# responsibility for the use of this software.                                #',
+                '#                                                                             #',
+                '###############################################################################']
+    for line in copyright:
+        file_.write(line + '\n')
+    file_.write("</pre>\n")
+
+def write_footer(file_):
+    '''Finish up the html file
+    '''
+    file_.write( "\n</body>\n<!-- End body of gallery -->\n</html>\n")
+    file_.close()
+
+def is_web_page(page_name):
+    '''Checks if the file name has expected web-page 
+    extention
+    '''
+    web_extensions = ['.html', '.htm', '.shtml', '.php']
+    for ext in web_extensions:
+        if page_name.endswith(ext):
+            return 1
+    return 0
+
+def loop_through_dirs():
+    '''
+    ################################################################
+    # Loop through the directories to create the download pages
+    # there and to create links to these download pages
+    ################################################################
+    '''
+    #get the list of directories
+    version_dirs = [name for name in os.listdir(os.getcwd()) if os.path.isdir(name)]
+    # add current directory for convenience. 
+    version_dirs = ['./'] + version_dirs
+    return version_dirs
+
+
+    
+if __name__ == "__main__":
+    ################################################################
+    # Work with arguments
+    ################################################################
+    args = sys.argv[1:]
+    num_args = len(args)
+
+    ################################################################
+    # Find the page name and the path to the downloads page
+    ################################################################
+    page_name = "file_list.html"
+    #specify the path to the downloads files
+    path_original = '/n/swqa/LAGRIT/lagrit.lanl.gov/downloads/'
+    path_ = '/n/swqa/LAGRIT/lagrit.lanl.gov/downloads/'
+
+    #If there are arguments, look for web page name
+    # and/or path
+    if num_args > 0:
+        for arg in args:
+            if is_web_page(arg):
+                page_name = arg
+            else:
+                path_ = arg
+    if not path_.endswith('/'):
+        path_ = path_ + '/'
+
+    # If we are looping through directories to create
+    # pages there, run the loop_through_dirs() function
+    loop_through = 1 
+    links = []
+    if loop_through: 
+        # assuming that the number of the version is between
+        # prefix and postfix
+        version_dirs = loop_through_dirs()
+        prefix = "vers"
+        postfix = "_release"
+
+    while len(version_dirs) > 0:
+        #grab the last subdir and create the file there
+        #links list
+        if version_dirs[-1] != './':
+            link_content = "Version " + version_dirs[-1][len(prefix):((-1)*len(postfix))]
+            link_href = version_dirs[-1] + "/"
+            print links
+        os.chdir(version_dirs[-1])
+        path_ = path_ + version_dirs.pop() + "/"
+
+        ################################################################
+        # Create the webpage
+        ################################################################
+        file_ = open(path_ + page_name, 'w')
+
+        #Writing the header
+        write_header(file_)
+
+        # after header, we want some sort of an explanation
+        # paragraph. Assuming, it is in the file
+        # named info.inc
+        # for various reasons, 
+        # it is better to name with the extention '.inc'
+        info_file = "info.inc"
+        if os.path.isfile(info_file):
+            info_msg = open(info_file)
+            for line in info_msg:
+                file_.write(line)
+            info_msg.close()
+
+
+        content=[]
+        sub_dir = "./"
+        #if sub_dir.startswith(prefix):
+        #    content += ['<th colspan="3" class="version">Version ' + sub_dir[len(prefix):-1*(len(postfix))] + "</th>"]
+        content += generate_content(path_, sub_dir)
+        write_content(file_, content, links)
+
+        ###### This is the end of the links loop #######################
+
+        # finish up the html file
+        write_copyright(file_)
+        write_footer(file_)
+        file_.close()
+
+        #append the link to the previous page to the links list
+        links.append((link_content, link_href))
+        path_ = path_original
+        os.chdir('../')
