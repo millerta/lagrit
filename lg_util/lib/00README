@@ -1,0 +1,89 @@
+for linux 32 and 64 bit versions with gfortran 4.4 or greater -------
+
+Check for valid version of gfortran
+aquifer.lanl.gov% gcc --version
+gcc (GCC) 4.1.2 20080704 (Red Hat 4.1.2-50)
+
+In directory lg_util/src
+Use make install or copy libraries to lg_util/lib (used by lagrit compile)
+
+------- debug and optimized version 64 bit 
+
+check mm2000.h that BYTES_PER_INT = 8
+if not then Remove and re-make mm2000.h from mm2000_header.F
+    rm -f mm2000.h
+    gcc -g -E -m64 -Dlinx64 mm2000_header.F -o mm2000.h
+
+make MOPT=64 COPT=-g install
+make MOPT=64 install
+
+Result should be new libraries in lg_util/lib
+-rw-r--r-- 1 tam pf 643136 Aug 31 09:25 util_lin64_g_gfort4.5.a
+-rw-r--r-- 1 tam pf 252448 Aug 31 09:26 util_lin64_o_gfort4.5.a
+==============================================================
+
+For lagrit release V3.001
+
+Kuprat's update to gmvwrite.c
+-rw-r--r-- 1 tam pf 643136 Aug 15 14:16 util_lin64_g_gfort4.5.a
+-rw-r--r-- 1 tam pf 260512 Aug 15 14:16 util_lin64_o_gfort4.5.a
+-rw-r--r-- 1 tam pf 386272 Aug 15 14:16 util_lin_g_gfort4.5.a
+-rw-r--r-- 1 tam pf 157128 Aug 15 14:16 util_lin_o_gfort4.5.a
+
+moved old libs to libs_jan2011_v2.202/
+
+-rw-r--r-- 1 tam pf 569488 Dec 22  2010 util_lin64_g.a
+-rw-r--r-- 1 tam pf 296040 Dec 22  2010 util_lin64_o.a
+-rw-r--r-- 1 tam pf 643016 Jan 11  2011 util_lin64_g_gfort4.5.a
+-rw-r--r-- 1 tam pf 252352 Jan 11  2011 util_lin64_o_gfort4.5.a
+-rw-r--r-- 1 tam pf 393296 Jan 11  2011 util_lin_g_gfort4.5.a
+-rw-r--r-- 1 tam pf 157048 Jan 11  2011 util_lin_o_gfort4.5.a
+
+
+For lagrit release V2.100
+src/gmvwritef.c
+src/mm2000.F
+added number of bytes to report of malloc failure
+printf("Attempted %d bytes.\n",sizeof(char)*10);
+
+include 64 bit version of linux (make sure mm2000.h is correctly compiled)
+use forte 12 version of compiler on sun
+
+-rw-r--r--   1 tam        569488 Aug  6 09:02 util_lin64_g.a
+-rw-r--r--   1 tam        296040 Aug  6 09:02 util_lin64_o.a
+-rw-r--r--   1 tam        619852 Aug  6 13:45 util_sun_g.a
+-rw-r--r--   1 tam        263516 Aug  6 13:29 util_sun_o.a
+-rw-r--r--   1 tam        403620 Aug  5 09:59 util_lin_g.a
+-rw-r--r--   1 tam        226192 Aug  5 09:59 util_lin_o.a
+-rw-r--r--   1 tam        515464 Aug  5 09:59 util_mac_g.a
+-rw-r--r--   1 tam        204176 Aug  5 09:59 util_mac_o.a
+-rw-r--r--   1 tam        410960 Aug  5 09:59 util_maci_g.a
+-rw-r--r--   1 tam        201760 Aug  5 09:59 util_maci_o.a
+
+
+Release V2.100
+Major changes have been made in the core memory management routines to allow 
+development for a 64 bit release.  These changes will be invisible to most users 
+but allows better reporting of errors and memory usage for useful diagnostic information.
+
+-rw-r--r--  1 tam radiusd 409944 Jul  7 09:47 util_maci_g.a
+-rw-r--r--  1 tam radiusd 200952 Jul  7 09:47 util_maci_o.a
+-rw-r--r--  1 tam radiusd 701836 Jul  7 09:47 util_sun_g.a
+-rw-r--r--  1 tam radiusd 268512 Jul  7 09:47 util_sun_o.a
+-rw-r--r--  1 tam radiusd 402836 Jul  7 09:47 util_lin_g.a
+-rw-r--r--  1 tam radiusd 225456 Jul  7 09:47 util_lin_o.a
+-rw-r--r--  1 tam radiusd 568440 Jul  7 09:47 util_lin64_g.a
+-rw-r--r--  1 tam radiusd 295408 Jul  7 09:47 util_lin64_o.a
+
+Release V2.005
+Libraries built in src directory now use Makefile and Makefile.depends
+instead of build scripts.
+
+Initial optimized and debug libraries built from pvcs
+-rw-r-----   1 tam  pf  220992 Oct 18 08:41 /home/tam/src/lagrit_pvcs/libs/util_lin_o.a
+-rw-r--r--   1 tam  pf  200412 Oct 18 08:45 /home/tam/src/lagrit_pvcs/libs/util_mac_o.a
+-rw-r-----   1 tam  pf  272588 Oct 18 08:37 /home/tam/src/lagrit_pvcs/libs/util_sun_o.a
+-rw-r-----   1 tam  pf  404636 Oct 18 08:41 /home/tam/src/lagrit_pvcs/libs/util_lin_g.a
+-rw-r--r--   1 tam  pf  485284 Oct 18 08:44 /home/tam/src/lagrit_pvcs/libs/util_mac_g.a
+-rw-r-----   1 tam  pf  715204 Oct 18 08:36 /home/tam/src/lagrit_pvcs/libs/util_sun_g.a
+
